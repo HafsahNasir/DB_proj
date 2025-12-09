@@ -1,0 +1,16 @@
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\ThriftHub.BLL.EF.dll.config
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\ThriftHub.BLL.EF.dll
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\ThriftHub.BLL.EF.pdb
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\EntityFramework.dll
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\ThriftHub.BLL.Interfaces.dll
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\Thrifthub.domain.dll
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\ThriftHub.BLL.Interfaces.pdb
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\Thrifthub.domain.pdb
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\EntityFramework.xml
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\obj\Debug\ThriftHub.BLL.EF.csproj.AssemblyReference.cache
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\obj\Debug\ThriftHub.BLL.EF.csproj.CoreCompileInputs.cache
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\obj\Debug\ThriftHu.D93AFA1B.Up2Date
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\obj\Debug\ThriftHub.BLL.EF.dll
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.EF\obj\Debug\ThriftHub.BLL.EF.pdb

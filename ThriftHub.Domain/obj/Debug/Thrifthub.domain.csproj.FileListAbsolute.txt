@@ -1,0 +1,6 @@
+C:\Users\PC\source\repos\ThriftHub\Thrifthub.domain\bin\Debug\Thrifthub.domain.dll
+C:\Users\PC\source\repos\ThriftHub\Thrifthub.domain\bin\Debug\Thrifthub.domain.pdb
+C:\Users\PC\source\repos\ThriftHub\Thrifthub.domain\obj\Debug\ThriftHub.Domain.csproj.AssemblyReference.cache
+C:\Users\PC\source\repos\ThriftHub\Thrifthub.domain\obj\Debug\ThriftHub.Domain.csproj.CoreCompileInputs.cache
+C:\Users\PC\source\repos\ThriftHub\Thrifthub.domain\obj\Debug\Thrifthub.domain.dll
+C:\Users\PC\source\repos\ThriftHub\Thrifthub.domain\obj\Debug\Thrifthub.domain.pdb

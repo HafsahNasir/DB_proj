@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="ThriftHub.BLL.EF/ThriftHub.BLL.EF.csproj" Id="cb738f31-fcbc-4a86-9ea8-dbe61c339ac2" />
+  <Project Path="ThriftHub.BLL.Interfaces/ThriftHub.BLL.Interfaces.csproj" Id="cc28e2ec-9a84-4540-b26b-8df86f2674b7" />
+  <Project Path="ThriftHub.BLL.SP/ThriftHub.BLL.SP.csproj" Id="ee73fd3c-ac67-4817-a4b2-3f7d027b7e55" />
+  <Project Path="Thrifthub.domain/ThriftHub.Domain.csproj" Id="f89f3b4b-ba4e-408d-8e43-f8016ed8c781" />
+  <Project Path="ThriftHub.Tester/ThriftHub.Tester.csproj" Id="ca489e41-abc5-49fc-9232-c9c75deb9c57" />
+  <Project Path="ThriftHub.UI.WinForms/ThriftHub.UI.WinForms.csproj" Id="87d4573d-3c45-4277-a370-809fa8e3b9e7" />
+</Solution>

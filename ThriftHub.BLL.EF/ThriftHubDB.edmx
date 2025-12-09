@@ -1,0 +1,1058 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ThriftHubDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+            <PropertyRef Name="PaymentDate" />
+          </Key>
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Method" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="OrderDate" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuyerID" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStatusAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="OldStatus" Type="varchar" MaxLength="20" />
+          <Property Name="NewStatus" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ChangedBy" Type="varchar" MaxLength="100" />
+          <Property Name="ChangeDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Condition" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UploadDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="BuyerID" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="ReviewText" Type="varchar" MaxLength="500" />
+          <Property Name="ReviewDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="Role" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="JoinDate" Type="datetime" Nullable="false" />
+          <Property Name="AverageRating" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ThriftHubDB.dbo.v_SellerProducts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_SellerProducts">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="UploadDate" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="SellerID" />
+            <PropertyRef Name="SellerName" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UploadDate" Type="datetime" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="SellerName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ThriftHubDB.dbo.vw_ActiveProductListings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_ActiveProductListings">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Condition" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="UploadDate" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="SellerID" />
+            <PropertyRef Name="SellerName" />
+            <PropertyRef Name="SellerAverageRating" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Condition" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UploadDate" Type="datetime" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="255" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="SellerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SellerAverageRating" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ThriftHubDB.dbo.vw_CategorySalesSummary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_CategorySalesSummary">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="TotalRevenue" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TotalProductsListed" Type="int" />
+          <Property Name="TotalItemsSold" Type="int" />
+          <Property Name="TotalRevenue" Type="decimal" Precision="38" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ThriftHubDB.dbo.vw_OrderDetailsFull' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_OrderDetailsFull">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="BuyerID" />
+            <PropertyRef Name="BuyerName" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="TotalAmount" />
+            <PropertyRef Name="OrderStatus" />
+            <PropertyRef Name="OrderDetailID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ProductTitle" />
+            <PropertyRef Name="Amount" />
+            <PropertyRef Name="PaymentMethod" />
+            <PropertyRef Name="PaymentDate" />
+            <PropertyRef Name="PaymentStatus" />
+            <PropertyRef Name="SellerID" />
+            <PropertyRef Name="SellerName" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="BuyerID" Type="int" Nullable="false" />
+          <Property Name="BuyerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="OrderStatus" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrderDetailID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductTitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="255" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PaymentMethod" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+          <Property Name="PaymentStatus" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="SellerName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ThriftHubDB.dbo.vw_ProductsWithSellerAndCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_ProductsWithSellerAndCategory">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Condition" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="UploadDate" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="SellerID" />
+            <PropertyRef Name="SellerName" />
+            <PropertyRef Name="SellerEmail" />
+            <PropertyRef Name="SellerAverageRating" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Condition" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UploadDate" Type="datetime" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="255" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="SellerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SellerEmail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SellerAverageRating" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ThriftHubDB.dbo.vw_SellerSalesSummary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_SellerSalesSummary">
+          <Key>
+            <PropertyRef Name="SellerID" />
+            <PropertyRef Name="SellerName" />
+            <PropertyRef Name="SellerEmail" />
+            <PropertyRef Name="SellerAverageRating" />
+            <PropertyRef Name="TotalRevenue" />
+          </Key>
+          <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="SellerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SellerEmail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SellerAverageRating" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+          <Property Name="TotalProductsListed" Type="int" />
+          <Property Name="TotalItemsSold" Type="int" />
+          <Property Name="TotalRevenue" Type="decimal" Precision="38" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_OrderDetails_Order">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+              <PropertyRef Name="OrderDate" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderID" />
+              <PropertyRef Name="OrderDate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Product">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Buyer">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="BuyerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Category">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Seller">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SellerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Buyer">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="BuyerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Product">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ThriftHubDBModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatusAudit" EntityType="Self.OrderStatusAudit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_SellerProducts" EntityType="Self.v_SellerProducts" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_SellerProducts].[ProductID] AS [ProductID], 
+    [v_SellerProducts].[Title] AS [Title], 
+    [v_SellerProducts].[Description] AS [Description], 
+    [v_SellerProducts].[Price] AS [Price], 
+    [v_SellerProducts].[Status] AS [Status], 
+    [v_SellerProducts].[UploadDate] AS [UploadDate], 
+    [v_SellerProducts].[CategoryID] AS [CategoryID], 
+    [v_SellerProducts].[CategoryName] AS [CategoryName], 
+    [v_SellerProducts].[SellerID] AS [SellerID], 
+    [v_SellerProducts].[SellerName] AS [SellerName]
+    FROM [dbo].[v_SellerProducts] AS [v_SellerProducts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ActiveProductListings" EntityType="Self.vw_ActiveProductListings" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_ActiveProductListings].[ProductID] AS [ProductID], 
+    [vw_ActiveProductListings].[Title] AS [Title], 
+    [vw_ActiveProductListings].[Description] AS [Description], 
+    [vw_ActiveProductListings].[Price] AS [Price], 
+    [vw_ActiveProductListings].[Condition] AS [Condition], 
+    [vw_ActiveProductListings].[Status] AS [Status], 
+    [vw_ActiveProductListings].[UploadDate] AS [UploadDate], 
+    [vw_ActiveProductListings].[ImageURL] AS [ImageURL], 
+    [vw_ActiveProductListings].[CategoryID] AS [CategoryID], 
+    [vw_ActiveProductListings].[CategoryName] AS [CategoryName], 
+    [vw_ActiveProductListings].[SellerID] AS [SellerID], 
+    [vw_ActiveProductListings].[SellerName] AS [SellerName], 
+    [vw_ActiveProductListings].[SellerAverageRating] AS [SellerAverageRating]
+    FROM [dbo].[vw_ActiveProductListings] AS [vw_ActiveProductListings]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_CategorySalesSummary" EntityType="Self.vw_CategorySalesSummary" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_CategorySalesSummary].[CategoryID] AS [CategoryID], 
+    [vw_CategorySalesSummary].[CategoryName] AS [CategoryName], 
+    [vw_CategorySalesSummary].[TotalProductsListed] AS [TotalProductsListed], 
+    [vw_CategorySalesSummary].[TotalItemsSold] AS [TotalItemsSold], 
+    [vw_CategorySalesSummary].[TotalRevenue] AS [TotalRevenue]
+    FROM [dbo].[vw_CategorySalesSummary] AS [vw_CategorySalesSummary]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_OrderDetailsFull" EntityType="Self.vw_OrderDetailsFull" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_OrderDetailsFull].[OrderID] AS [OrderID], 
+    [vw_OrderDetailsFull].[BuyerID] AS [BuyerID], 
+    [vw_OrderDetailsFull].[BuyerName] AS [BuyerName], 
+    [vw_OrderDetailsFull].[OrderDate] AS [OrderDate], 
+    [vw_OrderDetailsFull].[TotalAmount] AS [TotalAmount], 
+    [vw_OrderDetailsFull].[OrderStatus] AS [OrderStatus], 
+    [vw_OrderDetailsFull].[OrderDetailID] AS [OrderDetailID], 
+    [vw_OrderDetailsFull].[ProductID] AS [ProductID], 
+    [vw_OrderDetailsFull].[ProductTitle] AS [ProductTitle], 
+    [vw_OrderDetailsFull].[ImageURL] AS [ImageURL], 
+    [vw_OrderDetailsFull].[Amount] AS [Amount], 
+    [vw_OrderDetailsFull].[PaymentMethod] AS [PaymentMethod], 
+    [vw_OrderDetailsFull].[PaymentDate] AS [PaymentDate], 
+    [vw_OrderDetailsFull].[PaymentStatus] AS [PaymentStatus], 
+    [vw_OrderDetailsFull].[SellerID] AS [SellerID], 
+    [vw_OrderDetailsFull].[SellerName] AS [SellerName]
+    FROM [dbo].[vw_OrderDetailsFull] AS [vw_OrderDetailsFull]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ProductsWithSellerAndCategory" EntityType="Self.vw_ProductsWithSellerAndCategory" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_ProductsWithSellerAndCategory].[ProductID] AS [ProductID], 
+    [vw_ProductsWithSellerAndCategory].[Title] AS [Title], 
+    [vw_ProductsWithSellerAndCategory].[Description] AS [Description], 
+    [vw_ProductsWithSellerAndCategory].[Price] AS [Price], 
+    [vw_ProductsWithSellerAndCategory].[Condition] AS [Condition], 
+    [vw_ProductsWithSellerAndCategory].[Status] AS [Status], 
+    [vw_ProductsWithSellerAndCategory].[UploadDate] AS [UploadDate], 
+    [vw_ProductsWithSellerAndCategory].[ImageURL] AS [ImageURL], 
+    [vw_ProductsWithSellerAndCategory].[CategoryID] AS [CategoryID], 
+    [vw_ProductsWithSellerAndCategory].[CategoryName] AS [CategoryName], 
+    [vw_ProductsWithSellerAndCategory].[SellerID] AS [SellerID], 
+    [vw_ProductsWithSellerAndCategory].[SellerName] AS [SellerName], 
+    [vw_ProductsWithSellerAndCategory].[SellerEmail] AS [SellerEmail], 
+    [vw_ProductsWithSellerAndCategory].[SellerAverageRating] AS [SellerAverageRating]
+    FROM [dbo].[vw_ProductsWithSellerAndCategory] AS [vw_ProductsWithSellerAndCategory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_SellerSalesSummary" EntityType="Self.vw_SellerSalesSummary" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_SellerSalesSummary].[SellerID] AS [SellerID], 
+    [vw_SellerSalesSummary].[SellerName] AS [SellerName], 
+    [vw_SellerSalesSummary].[SellerEmail] AS [SellerEmail], 
+    [vw_SellerSalesSummary].[SellerAverageRating] AS [SellerAverageRating], 
+    [vw_SellerSalesSummary].[TotalProductsListed] AS [TotalProductsListed], 
+    [vw_SellerSalesSummary].[TotalItemsSold] AS [TotalItemsSold], 
+    [vw_SellerSalesSummary].[TotalRevenue] AS [TotalRevenue]
+    FROM [dbo].[vw_SellerSalesSummary] AS [vw_SellerSalesSummary]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_OrderDetails_Order" Association="Self.FK_OrderDetails_Order">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Product" Association="Self.FK_OrderDetails_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Buyer" Association="Self.FK_Orders_Buyer">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Category" Association="Self.FK_Products_Category">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Seller" Association="Self.FK_Products_Seller">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Buyer" Association="Self.FK_Reviews_Buyer">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Product" Association="Self.FK_Reviews_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ThriftHubDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Category" FromRole="Categories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+            <PropertyRef Name="PaymentDate" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Method" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Order" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetails_Product" FromRole="OrderDetails" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="OrderDate" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuyerID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Order" FromRole="Orders" ToRole="OrderDetails" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Orders_Buyer" FromRole="Orders" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="OrderStatusAudit">
+          <Key>
+            <PropertyRef Name="AuditID" />
+          </Key>
+          <Property Name="AuditID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OldStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NewStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ChangedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ChangeDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Condition" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Products_Category" FromRole="Products" ToRole="Categories" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Product" FromRole="Products" ToRole="OrderDetails" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Products_Seller" FromRole="Products" ToRole="Users" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Product" FromRole="Products" ToRole="Reviews" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="BuyerID" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="ReviewText" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ReviewDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Reviews_Product" FromRole="Reviews" ToRole="Products" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Reviews_Buyer" FromRole="Reviews" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AverageRating" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Buyer" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Seller" FromRole="Users" ToRole="Products" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Buyer" FromRole="Users" ToRole="Reviews" />
+        </EntityType>
+        <EntityType Name="v_SellerProducts">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="UploadDate" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="SellerID" />
+            <PropertyRef Name="SellerName" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="SellerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_ActiveProductListings">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Condition" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="UploadDate" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="SellerID" />
+            <PropertyRef Name="SellerName" />
+            <PropertyRef Name="SellerAverageRating" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Condition" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ImageURL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="SellerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerAverageRating" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_CategorySalesSummary">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="TotalRevenue" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalProductsListed" Type="Int32" />
+          <Property Name="TotalItemsSold" Type="Int32" />
+          <Property Name="TotalRevenue" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_OrderDetailsFull">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="BuyerID" />
+            <PropertyRef Name="BuyerName" />
+            <PropertyRef Name="OrderDate" />
+            <PropertyRef Name="TotalAmount" />
+            <PropertyRef Name="OrderStatus" />
+            <PropertyRef Name="OrderDetailID" />
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ProductTitle" />
+            <PropertyRef Name="Amount" />
+            <PropertyRef Name="PaymentMethod" />
+            <PropertyRef Name="PaymentDate" />
+            <PropertyRef Name="PaymentStatus" />
+            <PropertyRef Name="SellerID" />
+            <PropertyRef Name="SellerName" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="BuyerID" Type="Int32" Nullable="false" />
+          <Property Name="BuyerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="OrderStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageURL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="SellerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_ProductsWithSellerAndCategory">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="Condition" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="UploadDate" />
+            <PropertyRef Name="CategoryID" />
+            <PropertyRef Name="CategoryName" />
+            <PropertyRef Name="SellerID" />
+            <PropertyRef Name="SellerName" />
+            <PropertyRef Name="SellerEmail" />
+            <PropertyRef Name="SellerAverageRating" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Condition" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ImageURL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="SellerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerAverageRating" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_SellerSalesSummary">
+          <Key>
+            <PropertyRef Name="SellerID" />
+            <PropertyRef Name="SellerName" />
+            <PropertyRef Name="SellerEmail" />
+            <PropertyRef Name="SellerAverageRating" />
+            <PropertyRef Name="TotalRevenue" />
+          </Key>
+          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="SellerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerAverageRating" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
+          <Property Name="TotalProductsListed" Type="Int32" />
+          <Property Name="TotalItemsSold" Type="Int32" />
+          <Property Name="TotalRevenue" Type="Decimal" Precision="38" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Products_Category">
+          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Order">
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+              <PropertyRef Name="OrderDate" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderID" />
+              <PropertyRef Name="OrderDate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Product">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Buyer">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="BuyerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Seller">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SellerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Product">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Buyer">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="BuyerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ThriftHubDBEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderStatusAudits" EntityType="Self.OrderStatusAudit" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="v_SellerProducts" EntityType="Self.v_SellerProducts" />
+          <EntitySet Name="vw_ActiveProductListings" EntityType="Self.vw_ActiveProductListings" />
+          <EntitySet Name="vw_CategorySalesSummary" EntityType="Self.vw_CategorySalesSummary" />
+          <EntitySet Name="vw_OrderDetailsFull" EntityType="Self.vw_OrderDetailsFull" />
+          <EntitySet Name="vw_ProductsWithSellerAndCategory" EntityType="Self.vw_ProductsWithSellerAndCategory" />
+          <EntitySet Name="vw_SellerSalesSummary" EntityType="Self.vw_SellerSalesSummary" />
+          <AssociationSet Name="FK_Products_Category" Association="Self.FK_Products_Category">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Order" Association="Self.FK_OrderDetails_Order">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Product" Association="Self.FK_OrderDetails_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Buyer" Association="Self.FK_Orders_Buyer">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Seller" Association="Self.FK_Products_Seller">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Product" Association="Self.FK_Reviews_Product">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Buyer" Association="Self.FK_Reviews_Buyer">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ThriftHubDBModelStoreContainer" CdmEntityContainer="ThriftHubDBEntities2">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatusAudits">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.OrderStatusAudit">
+              <MappingFragment StoreEntitySet="OrderStatusAudit">
+                <ScalarProperty Name="AuditID" ColumnName="AuditID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OldStatus" ColumnName="OldStatus" />
+                <ScalarProperty Name="NewStatus" ColumnName="NewStatus" />
+                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.Review">
+              <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="ReviewText" ColumnName="ReviewText" />
+                <ScalarProperty Name="ReviewDate" ColumnName="ReviewDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_SellerProducts">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.v_SellerProducts">
+              <MappingFragment StoreEntitySet="v_SellerProducts">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="SellerName" ColumnName="SellerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ActiveProductListings">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.vw_ActiveProductListings">
+              <MappingFragment StoreEntitySet="vw_ActiveProductListings">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="SellerName" ColumnName="SellerName" />
+                <ScalarProperty Name="SellerAverageRating" ColumnName="SellerAverageRating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_CategorySalesSummary">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.vw_CategorySalesSummary">
+              <MappingFragment StoreEntitySet="vw_CategorySalesSummary">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="TotalProductsListed" ColumnName="TotalProductsListed" />
+                <ScalarProperty Name="TotalItemsSold" ColumnName="TotalItemsSold" />
+                <ScalarProperty Name="TotalRevenue" ColumnName="TotalRevenue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_OrderDetailsFull">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.vw_OrderDetailsFull">
+              <MappingFragment StoreEntitySet="vw_OrderDetailsFull">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="BuyerID" ColumnName="BuyerID" />
+                <ScalarProperty Name="BuyerName" ColumnName="BuyerName" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="SellerName" ColumnName="SellerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ProductsWithSellerAndCategory">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.vw_ProductsWithSellerAndCategory">
+              <MappingFragment StoreEntitySet="vw_ProductsWithSellerAndCategory">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="SellerName" ColumnName="SellerName" />
+                <ScalarProperty Name="SellerEmail" ColumnName="SellerEmail" />
+                <ScalarProperty Name="SellerAverageRating" ColumnName="SellerAverageRating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_SellerSalesSummary">
+            <EntityTypeMapping TypeName="ThriftHubDBModel.vw_SellerSalesSummary">
+              <MappingFragment StoreEntitySet="vw_SellerSalesSummary">
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="SellerName" ColumnName="SellerName" />
+                <ScalarProperty Name="SellerEmail" ColumnName="SellerEmail" />
+                <ScalarProperty Name="SellerAverageRating" ColumnName="SellerAverageRating" />
+                <ScalarProperty Name="TotalProductsListed" ColumnName="TotalProductsListed" />
+                <ScalarProperty Name="TotalItemsSold" ColumnName="TotalItemsSold" />
+                <ScalarProperty Name="TotalRevenue" ColumnName="TotalRevenue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

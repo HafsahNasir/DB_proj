@@ -1,0 +1,11 @@
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\bin\Debug\ThriftHub.BLL.SP.dll
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\bin\Debug\ThriftHub.BLL.SP.pdb
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\bin\Debug\ThriftHub.BLL.Interfaces.dll
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\bin\Debug\Thrifthub.domain.dll
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\bin\Debug\ThriftHub.BLL.Interfaces.pdb
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\bin\Debug\Thrifthub.domain.pdb
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\obj\Debug\ThriftHub.BLL.SP.csproj.AssemblyReference.cache
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\obj\Debug\ThriftHub.BLL.SP.csproj.CoreCompileInputs.cache
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\obj\Debug\ThriftHu.C8FF9B3D.Up2Date
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\obj\Debug\ThriftHub.BLL.SP.dll
+C:\Users\PC\source\repos\ThriftHub\ThriftHub.BLL.SP\obj\Debug\ThriftHub.BLL.SP.pdb
